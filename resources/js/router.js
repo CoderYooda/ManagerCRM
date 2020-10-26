@@ -8,7 +8,7 @@ export default new Router({
     base: '/',//process.env.BASE_URL,
     routes: [
         {
-            path: '/',
+            path: '',
             name: 'home',
             meta: {layout: 'main'},
             component: () => import('./components/views/Home.vue')
@@ -21,9 +21,27 @@ export default new Router({
         },
         {
             path: '/settings',
-            name: 'settings',
             meta: {layout: 'main'},
-            component: () => import('./components/views/Settings.vue')
+            component: () => import('./components/views/Settings.vue'),
+            children:[
+                {
+                    path: '',
+                    component: () => import('./components/views/Settings/Base'),
+                    props: true
+                },
+                {
+                    path: 'profile',
+                    component: () => import('./components/views/Settings/Profile'),
+                },
+                {
+                    path: 'account',
+                    component: () => import('./components/views/Settings/Account'),
+                },
+                {
+                    path: 'image',
+                    component: () => import('./components/views/Settings/Image'),
+                },
+            ]
         },
     ]
 })

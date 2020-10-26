@@ -31394,3 +31394,13 @@ fieldset[disabled] .md-switch input + i:after {
   color: rgba(255, 255, 255, 0.85);
 }
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+

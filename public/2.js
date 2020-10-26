@@ -15,25 +15,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  // data:{
-  //   router:{
-  //       mode: 'history',
-  //       base: '/settings',
-  //       routes: [
-  //           {
-  //               path: '/base',
-  //               name: 'base',
-  //               component: () => import('./components/views/Home.vue')
-  //           },
-  //           {
-  //               path: '/theme',
-  //               name: 'theme',
-  //               component: () => import('./components/views/Categories.vue')
-  //           }
-  //       ]
-  //   }
-  // },
+  data: function data() {
+    return {
+      pageName: "1231231"
+    };
+  },
   mounted: function mounted() {
     this.$eventBus.$emit('set-title', 'Настройки');
   },
@@ -57,7 +66,101 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    Настройки\n")])
+  return _c("div", { staticClass: "d-sm-flex" }, [
+    _c("div", { staticClass: "w w-auto-xs light bg bg-auto-sm b-r" }, [
+      _c("div", { staticClass: "py-3" }, [
+        _c("div", { staticClass: "nav-active-border left b-primary" }, [
+          _c("ul", { staticClass: "nav flex-column nav-sm" }, [
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-link",
+                    attrs: {
+                      tag: "a",
+                      "active-class": "active",
+                      to: "/settings/",
+                      exact: ""
+                    }
+                  },
+                  [_vm._v("Основные")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-link",
+                    attrs: {
+                      tag: "a",
+                      "active-class": "active",
+                      to: "/settings/profile",
+                      exact: ""
+                    }
+                  },
+                  [_vm._v("Профиль")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-link",
+                    attrs: {
+                      tag: "a",
+                      "active-class": "active",
+                      to: "/settings/account",
+                      exact: ""
+                    }
+                  },
+                  [_vm._v("Учетная запись")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-link",
+                    attrs: {
+                      tag: "a",
+                      "active-class": "active",
+                      to: "/settings/image",
+                      exact: ""
+                    }
+                  },
+                  [_vm._v("Изображения")]
+                )
+              ],
+              1
+            )
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col p-0" }, [_c("router-view")], 1)
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

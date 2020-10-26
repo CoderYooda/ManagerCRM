@@ -1,13 +1,12 @@
 <template>
-    <div>
-        dddd
+    <div style="background: #1b4b72">
+        123123
     </div>
 </template>
 
 <script>
     export default {
         mounted() {
-            this.$eventBus.$emit('set-title', 'Главная страница');
         },
         methods: {
         }

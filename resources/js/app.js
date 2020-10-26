@@ -4,10 +4,18 @@ import App from './components/App'
 import router from './router';
 import store from './store';
 
-
-
-
 Vue.prototype.$eventBus = new Vue();
+
+Vue.prototype.saveToLocalStorage = (key, value)=>{
+    localStorage.setItem(key, value);
+};
+
+Vue.prototype.getFromLocalStorage = (key)=>{
+    let val = localStorage[key];
+    return val ? val : null;
+};
+
+
 new Vue({
     router,
     store,

@@ -26,6 +26,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -36,7 +40,7 @@ __webpack_require__.r(__webpack_exports__);
     this.prepareSettings();
   },
   methods: {
-    setContent: function setContent() {
+    setContent: function setContent(elem) {
       this.saveToLocalStorage('content_class', this.contentIsDark ? 'dark' : 'white');
       this.$eventBus.$emit('contentClassChanged');
     },
@@ -77,7 +81,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-6" }, [
-          _c("label", { staticClass: "ui-switch dark mt-2 mr-2" }, [
+          _c("label", { staticClass: "radio radio-inline m-0 mr-1 ui-check" }, [
             _c("input", {
               directives: [
                 {
@@ -87,42 +91,61 @@ var render = function() {
                   expression: "contentIsDark"
                 }
               ],
-              attrs: { type: "checkbox", checked: "" },
+              attrs: { type: "radio", name: "brand" },
               domProps: {
-                checked: Array.isArray(_vm.contentIsDark)
-                  ? _vm._i(_vm.contentIsDark, null) > -1
-                  : _vm.contentIsDark
+                value: false,
+                checked: _vm._q(_vm.contentIsDark, false)
               },
               on: {
                 change: [
                   function($event) {
-                    var $$a = _vm.contentIsDark,
-                      $$el = $event.target,
-                      $$c = $$el.checked ? true : false
-                    if (Array.isArray($$a)) {
-                      var $$v = null,
-                        $$i = _vm._i($$a, $$v)
-                      if ($$el.checked) {
-                        $$i < 0 && (_vm.contentIsDark = $$a.concat([$$v]))
-                      } else {
-                        $$i > -1 &&
-                          (_vm.contentIsDark = $$a
-                            .slice(0, $$i)
-                            .concat($$a.slice($$i + 1)))
-                      }
-                    } else {
-                      _vm.contentIsDark = $$c
-                    }
+                    _vm.contentIsDark = false
                   },
                   function($event) {
-                    return _vm.setContent()
+                    return _vm.setContent(this)
                   }
                 ]
               }
             }),
             _vm._v(" "),
-            _c("i")
-          ])
+            _c("i", { staticClass: "light" })
+          ]),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass: "radio radio-inline m-0 mr-1 ui-check ui-check-color"
+            },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.contentIsDark,
+                    expression: "contentIsDark"
+                  }
+                ],
+                attrs: { type: "radio", name: "brand" },
+                domProps: {
+                  value: true,
+                  checked: _vm._q(_vm.contentIsDark, true)
+                },
+                on: {
+                  change: [
+                    function($event) {
+                      _vm.contentIsDark = true
+                    },
+                    function($event) {
+                      return _vm.setContent(this)
+                    }
+                  ]
+                }
+              }),
+              _vm._v(" "),
+              _c("i", { staticClass: "dark" })
+            ]
+          )
         ])
       ])
     ])

@@ -1,21 +1,66 @@
 <template>
     <div>
         <div class="p-4 b-b _600">Настройки изображения</div>
-        <form role="form" class="p-4 col-md-6">
-            <div class="form-group row">
-                <label class="col-sm-6 col-form-label">Фон контейнера</label>
-                <div class="col-sm-6">
-                    <label class="radio radio-inline m-0 mr-1 ui-check">
-                        <input v-model="contentIsDark" @change="setContent(this)" type="radio" name="brand" v-bind:value="false">
-                        <i class="light"></i>
-                    </label>
-                    <label class="radio radio-inline m-0 mr-1 ui-check ui-check-color">
-                        <input v-model="contentIsDark" @change="setContent(this)" type="radio" name="brand" v-bind:value="true">
-                        <i class="dark"></i>
-                    </label>
+        <div class="p-4 col-md-6">
+            <div class="box">
+                <div class="box-header">
+                    <h2>Цветовая настройка приложения</h2>
+                    <small>Настройте удобный для себя цветовой стиль приложения. Доступны тёмная и светлая тема</small>
+                </div>
+                <div class="box-divider m-0"></div>
+                <div class="box-body">
+                    <form>
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label">Фон контейнера</label>
+                            <div class="col-sm-6">
+                                <label class="md-switch p-2">
+                                    <input v-model="contentIsDark" @change="setTheme()" type="checkbox" checked>
+                                    <i class="blue"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label">Фон меню</label>
+                            <div class="col-sm-6">
+                                <label class="md-switch p-2">
+                                    <input v-model="asideIsDark" @change="setTheme()" type="checkbox" checked>
+                                    <i class="blue"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label">Фон логотипа</label>
+                            <div class="col-sm-6">
+                                <label class="md-switch p-2">
+                                    <input v-model="logoIsDark" @change="setTheme()" type="checkbox" checked v-bind:disabled="asideIsDark">
+                                    <i class="blue"></i>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </form>
+            <div class="box">
+                <div class="box-header">
+                    <h2>Форма отображения</h2>
+                    <small>Используйте полноеэкранный режим для максимального использования монитора, или компактную версию</small>
+                </div>
+                <div class="box-divider m-0"></div>
+                <div class="box-body">
+                    <form>
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label">На всю ширину</label>
+                            <div class="col-sm-6">
+                                <label class="md-switch p-2">
+                                    <input v-model="isFullwidth" @change="setTheme()" type="checkbox" checked>
+                                    <i class="blue"></i>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -23,21 +68,33 @@
     export default {
         data: ()=> {
             return {
-                contentIsDark: false
+                contentIsDark: false,
+                asideIsDark: false,
+                logoIsDark: false,
+                isFullwidth: false,
             }
         },
         mounted(){
             this.prepareSettings();
         },
         methods: {
-            setContent(elem){
-                this.saveToLocalStorage('content_class', this.contentIsDark ? 'dark' : 'white');
-                this.$eventBus.$emit('contentClassChanged');
+            setTheme(){
+                this.logoIsDark = this.asideIsDark ?  true : this.logoIsDark;
+                this.saveToLocalStorage('content_class', this.contentIsDark ? 'dark' : 'dark-white');
+                this.saveToLocalStorage('aside_class', this.asideIsDark ? 'dark' : 'dark-white');
+                this.saveToLocalStorage('logo_class', this.logoIsDark ? 'dark' : 'dark-white');
+                this.saveToLocalStorage('isFullwidth', this.isFullwidth);
+                this.$eventBus.$emit('themeChanged');
             },
             prepareSettings(){
                 let content_class = this.getFromLocalStorage('content_class');
-                console.log(content_class);
+                let aside_class = this.getFromLocalStorage('aside_class');
+                let logo_class = this.getFromLocalStorage('logo_class');
+                let isFullwidth = this.getFromLocalStorage('isFullwidth');
                 this.contentIsDark = content_class === 'dark';
+                this.asideIsDark = aside_class === 'dark';
+                this.logoIsDark = logo_class === 'dark';
+                this.isFullwidth = (isFullwidth === 'true');
             }
         }
     }

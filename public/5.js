@@ -30,24 +30,81 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      contentIsDark: false
+      contentIsDark: false,
+      asideIsDark: false,
+      logoIsDark: false,
+      isFullwidth: false
     };
   },
   mounted: function mounted() {
     this.prepareSettings();
   },
   methods: {
-    setContent: function setContent(elem) {
-      this.saveToLocalStorage('content_class', this.contentIsDark ? 'dark' : 'white');
-      this.$eventBus.$emit('contentClassChanged');
+    setTheme: function setTheme() {
+      this.logoIsDark = this.asideIsDark ? true : this.logoIsDark;
+      this.saveToLocalStorage('content_class', this.contentIsDark ? 'dark' : 'dark-white');
+      this.saveToLocalStorage('aside_class', this.asideIsDark ? 'dark' : 'dark-white');
+      this.saveToLocalStorage('logo_class', this.logoIsDark ? 'dark' : 'dark-white');
+      this.saveToLocalStorage('isFullwidth', this.isFullwidth);
+      this.$eventBus.$emit('themeChanged');
     },
     prepareSettings: function prepareSettings() {
       var content_class = this.getFromLocalStorage('content_class');
-      console.log(content_class);
+      var aside_class = this.getFromLocalStorage('aside_class');
+      var logo_class = this.getFromLocalStorage('logo_class');
+      var isFullwidth = this.getFromLocalStorage('isFullwidth');
       this.contentIsDark = content_class === 'dark';
+      this.asideIsDark = aside_class === 'dark';
+      this.logoIsDark = logo_class === 'dark';
+      this.isFullwidth = isFullwidth === 'true';
     }
   }
 });
@@ -74,84 +131,283 @@ var render = function() {
       _vm._v("Настройки изображения")
     ]),
     _vm._v(" "),
-    _c("form", { staticClass: "p-4 col-md-6", attrs: { role: "form" } }, [
-      _c("div", { staticClass: "form-group row" }, [
-        _c("label", { staticClass: "col-sm-6 col-form-label" }, [
-          _vm._v("Фон контейнера")
-        ]),
+    _c("div", { staticClass: "p-4 col-md-6" }, [
+      _c("div", { staticClass: "box" }, [
+        _vm._m(0),
         _vm._v(" "),
-        _c("div", { staticClass: "col-sm-6" }, [
-          _c("label", { staticClass: "radio radio-inline m-0 mr-1 ui-check" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.contentIsDark,
-                  expression: "contentIsDark"
-                }
-              ],
-              attrs: { type: "radio", name: "brand" },
-              domProps: {
-                value: false,
-                checked: _vm._q(_vm.contentIsDark, false)
-              },
-              on: {
-                change: [
-                  function($event) {
-                    _vm.contentIsDark = false
-                  },
-                  function($event) {
-                    return _vm.setContent(this)
-                  }
-                ]
-              }
-            }),
-            _vm._v(" "),
-            _c("i", { staticClass: "light" })
-          ]),
-          _vm._v(" "),
-          _c(
-            "label",
-            {
-              staticClass: "radio radio-inline m-0 mr-1 ui-check ui-check-color"
-            },
-            [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.contentIsDark,
-                    expression: "contentIsDark"
-                  }
-                ],
-                attrs: { type: "radio", name: "brand" },
-                domProps: {
-                  value: true,
-                  checked: _vm._q(_vm.contentIsDark, true)
-                },
-                on: {
-                  change: [
-                    function($event) {
-                      _vm.contentIsDark = true
-                    },
-                    function($event) {
-                      return _vm.setContent(this)
-                    }
-                  ]
-                }
-              }),
+        _c("div", { staticClass: "box-divider m-0" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "box-body" }, [
+          _c("form", [
+            _c("div", { staticClass: "form-group row" }, [
+              _c("label", { staticClass: "col-sm-6 col-form-label" }, [
+                _vm._v("Фон контейнера")
+              ]),
               _vm._v(" "),
-              _c("i", { staticClass: "dark" })
-            ]
-          )
+              _c("div", { staticClass: "col-sm-6" }, [
+                _c("label", { staticClass: "md-switch p-2" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.contentIsDark,
+                        expression: "contentIsDark"
+                      }
+                    ],
+                    attrs: { type: "checkbox", checked: "" },
+                    domProps: {
+                      checked: Array.isArray(_vm.contentIsDark)
+                        ? _vm._i(_vm.contentIsDark, null) > -1
+                        : _vm.contentIsDark
+                    },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$a = _vm.contentIsDark,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 && (_vm.contentIsDark = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.contentIsDark = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.contentIsDark = $$c
+                          }
+                        },
+                        function($event) {
+                          return _vm.setTheme()
+                        }
+                      ]
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("i", { staticClass: "blue" })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group row" }, [
+              _c("label", { staticClass: "col-sm-6 col-form-label" }, [
+                _vm._v("Фон меню")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-6" }, [
+                _c("label", { staticClass: "md-switch p-2" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.asideIsDark,
+                        expression: "asideIsDark"
+                      }
+                    ],
+                    attrs: { type: "checkbox", checked: "" },
+                    domProps: {
+                      checked: Array.isArray(_vm.asideIsDark)
+                        ? _vm._i(_vm.asideIsDark, null) > -1
+                        : _vm.asideIsDark
+                    },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$a = _vm.asideIsDark,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 && (_vm.asideIsDark = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.asideIsDark = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.asideIsDark = $$c
+                          }
+                        },
+                        function($event) {
+                          return _vm.setTheme()
+                        }
+                      ]
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("i", { staticClass: "blue" })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group row" }, [
+              _c("label", { staticClass: "col-sm-6 col-form-label" }, [
+                _vm._v("Фон логотипа")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-6" }, [
+                _c("label", { staticClass: "md-switch p-2" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.logoIsDark,
+                        expression: "logoIsDark"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      checked: "",
+                      disabled: _vm.asideIsDark
+                    },
+                    domProps: {
+                      checked: Array.isArray(_vm.logoIsDark)
+                        ? _vm._i(_vm.logoIsDark, null) > -1
+                        : _vm.logoIsDark
+                    },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$a = _vm.logoIsDark,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 && (_vm.logoIsDark = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.logoIsDark = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.logoIsDark = $$c
+                          }
+                        },
+                        function($event) {
+                          return _vm.setTheme()
+                        }
+                      ]
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("i", { staticClass: "blue" })
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "box" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "box-divider m-0" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "box-body" }, [
+          _c("form", [
+            _c("div", { staticClass: "form-group row" }, [
+              _c("label", { staticClass: "col-sm-6 col-form-label" }, [
+                _vm._v("На всю ширину")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-6" }, [
+                _c("label", { staticClass: "md-switch p-2" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.isFullwidth,
+                        expression: "isFullwidth"
+                      }
+                    ],
+                    attrs: { type: "checkbox", checked: "" },
+                    domProps: {
+                      checked: Array.isArray(_vm.isFullwidth)
+                        ? _vm._i(_vm.isFullwidth, null) > -1
+                        : _vm.isFullwidth
+                    },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$a = _vm.isFullwidth,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 && (_vm.isFullwidth = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.isFullwidth = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.isFullwidth = $$c
+                          }
+                        },
+                        function($event) {
+                          return _vm.setTheme()
+                        }
+                      ]
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("i", { staticClass: "blue" })
+                ])
+              ])
+            ])
+          ])
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-header" }, [
+      _c("h2", [_vm._v("Цветовая настройка приложения")]),
+      _vm._v(" "),
+      _c("small", [
+        _vm._v(
+          "Настройте удобный для себя цветовой стиль приложения. Доступны тёмная и светлая тема"
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-header" }, [
+      _c("h2", [_vm._v("Форма отображения")]),
+      _vm._v(" "),
+      _c("small", [
+        _vm._v(
+          "Используйте полноеэкранный режим для максимального использования монитора, или компактную версию"
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

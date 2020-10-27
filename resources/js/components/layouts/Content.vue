@@ -30,18 +30,18 @@
         created(){
             this.$eventBus.$on('set-title', this.setTitle);
 
-            this.loadContentTheme();
+            this.loadTheme();
 
-            this.$eventBus.$on('contentClassChanged', ()=>{
-                this.loadContentTheme();
+            this.$eventBus.$on('themeChanged', ()=>{
+                this.loadTheme();
             });
         },
         mounted() {
         },
         methods: {
-            loadContentTheme(){
-                let theme = this.getFromLocalStorage('content_class');
-                if(theme && theme === 'dark'){
+            loadTheme(){
+                let content_theme = this.getFromLocalStorage('content_class');
+                if(content_theme && content_theme === 'dark'){
                     this.isDark = true;
                 } else {
                     this.isDark = false;

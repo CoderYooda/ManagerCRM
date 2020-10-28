@@ -1,7 +1,7 @@
 <template>
     <div id="aside" v-bind:class="{ dark: asideDark }" class="app-aside fade box-shadow-x nav-expand white" aria-hidden="true">
         <div class="sidenav modal-dialog dk white">
-            <div v-bind:class="{ dark: logoDark }" class="navbar lt">
+            <div class="navbar lt">
                 <router-link tag="a" class="navbar-brand" to="/">
                     <svg viewBox="0 0 24 24" height="28" width="28" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 0h24v24H0z" fill="none" />
@@ -29,6 +29,12 @@
                                 <a href="#">
                                     <span class="nav-icon"><i class="fa fa-list"></i></span>
                                     <span class="nav-text">Категории</span>
+                                </a>
+                            </router-link>
+                            <router-link tag="li" active-class="active" to="/contacts" exact>
+                                <a href="#">
+                                    <span class="nav-icon"><i class="fa fa-users"></i></span>
+                                    <span class="nav-text">Контакты</span>
                                 </a>
                             </router-link>
                             <router-link tag="li" active-class="active" to="/settings">
@@ -109,7 +115,6 @@
         data: ()=> {
             return {
                 asideDark: false,
-                logoDark: false,
             }
         },
         created(){
@@ -123,16 +128,10 @@
         methods: {
             loadTheme(){
                 let aside = this.getFromLocalStorage('aside_class');
-                let logo = this.getFromLocalStorage('logo_class');
                 if(aside && aside === 'dark'){
                     this.asideDark = true;
                 } else {
                     this.asideDark = false;
-                }
-                if(logo && logo === 'dark'){
-                    this.logoDark = true;
-                } else {
-                    this.logoDark = false;
                 }
             },
             setTitle: function (title) {

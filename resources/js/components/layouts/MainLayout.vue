@@ -1,19 +1,24 @@
 <template>
     <div class="app" >
-        <Aside>
-        </Aside>
-        <MainContent>
-        </MainContent>
+        <Aside/>
+        <div id="content" v-bind:class="{ dark: isDark }" class="app-content box-shadow-0" role="main">
+            <Header v-if="header" />
+            <div class="content-main d-flex flex" id="content-main">
+                <router-view />
+            </div>
+            <Footer v-if="footer" />
+        </div>
     </div>
 </template>
 
 <script>
-    import MainContent from './Content'
-    import Aside from './Aside'
+    import Aside from '../template/Aside'
+    import Footer from '../template/Footer';
+    import Header from '../template/Header';
     export default {
         data: ()=> {
             return {
-                isFullwidth: false
+                isDark: false,
             }
         },
         created(){
@@ -22,21 +27,29 @@
                 this.loadTheme();
             });
         },
-        mounted() {
+        computed: {
+            header() {
+                return this.$route.meta.header !== false;
+            },
+            footer() {
+                return this.$route.meta.footer !== false;
+            },
         },
         methods: {
             loadTheme(){
-                let isFullwidth = this.getFromLocalStorage('isFullwidth');
-                this.isFullwidth = (isFullwidth === 'true');
-                let body = document.getElementsByTagName('body')[0];
-                body.classList.remove('container');
-                if(!this.isFullwidth)
-                    body.classList.add('container');
-
+                let content_theme = this.getFromLocalStorage('content_class');
+                if(content_theme && content_theme === 'dark'){
+                    this.isDark = true;
+                } else {
+                    this.isDark = false;
+                }
             },
+            setTitle: function (title) {
+                this.pageName = title;
+            }
         },
         components: {
-            MainContent, Aside
+            Aside, Footer, Header
         }
     }
 </script>

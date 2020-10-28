@@ -20,6 +20,12 @@ export default new Router({
             component: () => import('./components/views/Categories.vue')
         },
         {
+            path: '/contacts',
+            name: 'contacts',
+            meta: {layout: 'main', header:false, footer:false},
+            component: () => import('./components/views/Contacts.vue')
+        },
+        {
             path: '/settings',
             meta: {layout: 'main'},
             component: () => import('./components/views/Settings.vue'),

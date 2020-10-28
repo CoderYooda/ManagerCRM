@@ -11,28 +11,19 @@
                 <div class="box-body">
                     <form>
                         <div class="form-group row">
-                            <label class="col-sm-6 col-form-label">Фон контейнера</label>
+                            <label class="col-sm-6 col-form-label">Тёмная тема</label>
                             <div class="col-sm-6">
                                 <label class="md-switch p-2">
-                                    <input v-model="contentIsDark" @change="setTheme()" type="checkbox" checked>
+                                    <input v-model="bodyIsDark" @change="setTheme()" type="checkbox" checked>
                                     <i class="blue"></i>
                                 </label>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-6 col-form-label">Фон меню</label>
+                            <label class="col-sm-6 col-form-label">Тёмное меню</label>
                             <div class="col-sm-6">
                                 <label class="md-switch p-2">
-                                    <input v-model="asideIsDark" @change="setTheme()" type="checkbox" checked>
-                                    <i class="blue"></i>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-6 col-form-label">Фон логотипа</label>
-                            <div class="col-sm-6">
-                                <label class="md-switch p-2">
-                                    <input v-model="logoIsDark" @change="setTheme()" type="checkbox" checked v-bind:disabled="asideIsDark">
+                                    <input v-model="asideIsDark" @change="setTheme()" type="checkbox" checked v-bind:disabled="bodyIsDark">
                                     <i class="blue"></i>
                                 </label>
                             </div>
@@ -68,9 +59,8 @@
     export default {
         data: ()=> {
             return {
-                contentIsDark: false,
+                bodyIsDark: false,
                 asideIsDark: false,
-                logoIsDark: false,
                 isFullwidth: false,
             }
         },
@@ -79,21 +69,18 @@
         },
         methods: {
             setTheme(){
-                this.logoIsDark = this.asideIsDark ?  true : this.logoIsDark;
-                this.saveToLocalStorage('content_class', this.contentIsDark ? 'dark' : 'dark-white');
+                this.asideIsDark = this.bodyIsDark ? true : this.asideIsDark;
+                this.saveToLocalStorage('body_class', this.bodyIsDark ? 'dark' : 'dark-white');
                 this.saveToLocalStorage('aside_class', this.asideIsDark ? 'dark' : 'dark-white');
-                this.saveToLocalStorage('logo_class', this.logoIsDark ? 'dark' : 'dark-white');
                 this.saveToLocalStorage('isFullwidth', this.isFullwidth);
                 this.$eventBus.$emit('themeChanged');
             },
             prepareSettings(){
-                let content_class = this.getFromLocalStorage('content_class');
+                let body_class = this.getFromLocalStorage('body_class');
                 let aside_class = this.getFromLocalStorage('aside_class');
-                let logo_class = this.getFromLocalStorage('logo_class');
                 let isFullwidth = this.getFromLocalStorage('isFullwidth');
-                this.contentIsDark = content_class === 'dark';
+                this.bodyIsDark = body_class === 'dark';
                 this.asideIsDark = aside_class === 'dark';
-                this.logoIsDark = logo_class === 'dark';
                 this.isFullwidth = (isFullwidth === 'true');
             }
         }

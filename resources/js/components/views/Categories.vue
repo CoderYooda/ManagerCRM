@@ -1,7 +1,7 @@
 <template>
-  <div>
-    123
-  </div>
+    <div class="app-page">
+        123
+    </div>
 </template>
 
 <script>

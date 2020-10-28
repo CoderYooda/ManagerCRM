@@ -4,6 +4,8 @@ import App from './components/App'
 import router from './router';
 import store from './store';
 
+window.app_version = 0.9;
+
 Vue.prototype.$eventBus = new Vue();
 
 Vue.prototype.saveToLocalStorage = (key, value)=>{

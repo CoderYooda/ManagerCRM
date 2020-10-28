@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="app-page">
         dddd
     </div>
 </template>

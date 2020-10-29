@@ -23,10 +23,10 @@
         {{--    <link rel="stylesheet" href="../assets/css/style.css" type="text/css" />--}}
 
     </head>
-    <body>
+    <body class="fixed-content">
         <noscript>
             <strong>К сожалению сервис не работает без Javascript. Подключите Javascript и возвращайтесь!</strong>
         </noscript>
-        <div class="app" id="app"></div>
+        <div id="app"></div>
     </body>
 </html>

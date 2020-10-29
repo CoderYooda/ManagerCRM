@@ -23,10 +23,20 @@ export default new Router({
             path: '/contacts',
             name: 'contacts',
             meta: {layout: 'main', header:false, footer:false},
-            component: () => import('./components/views/Contacts.vue')
+            component: () => import('./components/views/Contacts.vue'),
+            children:[
+                {
+                    path: ':category_id',
+                    name: 'contactItem',
+                    meta: {layout: 'main', header:false, footer:false},
+                    component: () => import('./components/views/Contacts/UserList'),
+                    props: true
+                }
+            ]
         },
         {
             path: '/settings',
+            name: 'settings',
             meta: {layout: 'main'},
             component: () => import('./components/views/Settings.vue'),
             children:[

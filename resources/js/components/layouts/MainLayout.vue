@@ -1,5 +1,5 @@
 <template>
-    <div class="app" >
+    <div id="app" class="app">
         <Aside/>
         <div id="content" v-bind:class="{ dark: isDark }" class="app-content box-shadow-0" role="main">
             <Header v-if="header" />

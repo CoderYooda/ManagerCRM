@@ -2030,8 +2030,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2353,9 +2351,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.$eventBus.$on('set-title', this.setTitle);
   },
-  mounted: function mounted() {
-    console.log(this);
-  },
+  mounted: function mounted() {},
   methods: {
     setTitle: function setTitle(title) {
       this.pageName = title;
@@ -37972,12 +37968,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { attrs: { id: "app" } },
-    [_c(_vm.layout, { tag: "component" }, [_c("router-view")], 1)],
-    1
-  )
+  return _c(_vm.layout, { tag: "component" }, [_c("router-view")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38003,7 +37994,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "app" },
+    { staticClass: "app", attrs: { id: "app" } },
     [
       _c("Aside"),
       _vm._v(" "),
@@ -38174,8 +38165,7 @@ var render = function() {
                         attrs: {
                           tag: "li",
                           "active-class": "active",
-                          to: "/contacts",
-                          exact: ""
+                          to: "/contacts/all"
                         }
                       },
                       [
@@ -55487,9 +55477,23 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     },
     component: function component() {
       return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./components/views/Contacts.vue */ "./resources/js/components/views/Contacts.vue"));
-    }
+    },
+    children: [{
+      path: ':category_id',
+      name: 'contactItem',
+      meta: {
+        layout: 'main',
+        header: false,
+        footer: false
+      },
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./components/views/Contacts/UserList */ "./resources/js/components/views/Contacts/UserList.vue"));
+      },
+      props: true
+    }]
   }, {
     path: '/settings',
+    name: 'settings',
     meta: {
       layout: 'main'
     },
@@ -55564,8 +55568,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OpenServer\domains\ManagerCRM\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\ManagerCRM\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\OSPanel\domains\manager\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\OSPanel\domains\manager\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -6,9 +6,16 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
+Route::get('/demo', function () {
+    $accounts = \App\Models\Account::all();
+    return json_encode($accounts);
+});
+
+
 Route::get('/{dd}', function () {
     return view('welcome');
 });
+
 
 Route::group(['middleware' => 'connection'], function () {
     Route::group(['prefix' => 'app'], function () {

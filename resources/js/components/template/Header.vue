@@ -18,7 +18,7 @@
 
         },
         mounted(){
-            console.log(this);
+
         },
         methods: {
             setTitle: function (title) {

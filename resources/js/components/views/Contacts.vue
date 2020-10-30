@@ -10,6 +10,18 @@
                         <div class="sidenav mt-2">
                             <nav class="nav-border b-primary" data-nav>
                                 <ul class="nav">
+                                    <!--<router-link-->
+                                            <!--to="/contacts/"-->
+                                            <!--tag="li" active-class="active" exact>-->
+                                        <!--<category-item/>-->
+                                    <!--</router-link>-->
+                                    <router-link
+                                            v-for="category in categories"
+                                            v-bind:key="category.id"
+                                            :to="{name:'contactItem', params: {category_id: category.slug}}"
+                                            tag="li" active-class="active"  exact>
+                                        <category-item/>
+                                    </router-link>
                                     <router-link
                                         v-for="category in categories"
                                         v-bind:key="category.id"

@@ -39,6 +39,10 @@
                 state: 1,
             }
         },
+        beforeRouteUpdate(to, from, next){
+            console.log(to, from, next);
+            next();
+        },
         watch:{
             $attrs (to, from){
                 console.log(to.category_id, from.category_id);

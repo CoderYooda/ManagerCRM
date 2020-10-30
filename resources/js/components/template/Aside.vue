@@ -31,7 +31,7 @@
                                     <span class="nav-text">Категории</span>
                                 </a>
                             </router-link>
-                            <router-link tag="li" active-class="active" to="/contacts/all">
+                            <router-link tag="li" active-class="active" to="/contacts">
                                 <a href="#">
                                     <span class="nav-icon"><i class="fa fa-users"></i></span>
                                     <span class="nav-text">Контакты</span>

@@ -20,8 +20,15 @@ export default new Router({
             component: () => import('./components/views/Categories.vue')
         },
         {
+            path: '/im',
+            name: 'Messenger',
+            meta: {layout: 'main', header:false, footer:false},
+            component: () => import('./components/views/Messenger.vue')
+        },
+        {
             path: '/contacts',
             name: 'contacts',
+            redirect: 'contacts/all',
             meta: {layout: 'main', header:false, footer:false},
             component: () => import('./components/views/Contacts.vue'),
             children:[
@@ -31,7 +38,13 @@ export default new Router({
                     meta: {layout: 'main', header:false, footer:false},
                     component: () => import('./components/views/Contacts/UserList'),
                     props: true
-                }
+                },
+                {
+                    path: '/contacts/:category_id/:entity_id/card',
+                    name: 'contact',
+                    meta: {layout: 'main', header:false, footer:false},
+                    component: () => import('./components/views/Contacts/Contact.vue'),
+                },
             ]
         },
         {
@@ -59,5 +72,36 @@ export default new Router({
                 },
             ]
         },
+        {
+            path: '/references',
+            name: 'references',
+            redirect: 'references/all',
+            meta: {layout: 'main', header:false, footer:false},
+            component: () => import('./components/views/Reference.vue'),
+            children:[
+                {
+                    path: ':category_id',
+                    name: 'referenceItem',
+                    meta: {layout: 'main', header:false, footer:false},
+                    component: () => import('./components/views/Reference/ReferenceList'),
+                    props: true
+                },
+                {
+                    path: '/references/:category_id/:entity_id/edit',
+                    name: 'record',
+                    meta: {layout: 'main', header:false, footer:false},
+                    component: () => import('./components/views/Reference/Record.vue'),
+                },
+            ]
+        },
+        {
+            path: '/404',
+            name: '404',
+            meta: {layout: 'error', header:false, footer:false},
+            component: () => import('./components/service/NotFound'),
+        }, {
+            path: '*',
+            redirect: '/404'
+        }
     ]
 })

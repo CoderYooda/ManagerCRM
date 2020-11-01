@@ -20,11 +20,44 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-6 col-form-label">Тёмное меню</label>
+                            <label class="col-sm-6 col-form-label">Палитра</label>
                             <div class="col-sm-6">
                                 <label class="md-switch p-2">
                                     <input v-model="asideIsDark" @change="setTheme()" type="checkbox" checked v-bind:disabled="bodyIsDark">
                                     <i class="blue"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label">Тёмное меню</label>
+                            <div class="col-sm-6">
+                                <label class="radio radio-inline m-0 mr-1 ui-check ui-check-color">
+                                    <input v-model="theme" @change="setTheme()" type="radio" name="theme" value="primary">
+                                    <i class="primary"></i>
+                                </label>
+                                <label class="radio radio-inline m-0 mr-1 ui-check ui-check-color">
+                                    <input v-model="theme" @change="setTheme()" type="radio" name="theme" value="accent">
+                                    <i class="accent"></i>
+                                </label>
+                                <label class="radio radio-inline m-0 mr-1 ui-check ui-check-color">
+                                    <input v-model="theme" @change="setTheme()" type="radio" name="theme" value="warn">
+                                    <i class="warn"></i>
+                                </label>
+                                <label class="radio radio-inline m-0 mr-1 ui-check ui-check-color">
+                                    <input v-model="theme" @change="setTheme()" type="radio" name="theme" value="info">
+                                    <i class="info"></i>
+                                </label>
+                                <label class="radio radio-inline m-0 mr-1 ui-check ui-check-color">
+                                    <input v-model="theme" @change="setTheme()" type="radio" name="theme" value="success">
+                                    <i class="success"></i>
+                                </label>
+                                <label class="radio radio-inline m-0 mr-1 ui-check ui-check-color">
+                                    <input v-model="theme" @change="setTheme()" type="radio" name="theme" value="warning">
+                                    <i class="warning"></i>
+                                </label>
+                                <label class="radio radio-inline m-0 mr-1 ui-check ui-check-color">
+                                    <input v-model="theme" @change="setTheme()" type="radio" name="theme" value="danger">
+                                    <i class="danger"></i>
                                 </label>
                             </div>
                         </div>
@@ -62,6 +95,7 @@
                 bodyIsDark: false,
                 asideIsDark: false,
                 isFullwidth: false,
+                theme: null,
             }
         },
         mounted(){
@@ -73,15 +107,18 @@
                 this.saveToLocalStorage('body_class', this.bodyIsDark ? 'dark' : 'dark-white');
                 this.saveToLocalStorage('aside_class', this.asideIsDark ? 'dark' : 'dark-white');
                 this.saveToLocalStorage('isFullwidth', this.isFullwidth);
+                this.saveToLocalStorage('theme', this.theme);
                 this.$eventBus.$emit('themeChanged');
             },
             prepareSettings(){
                 let body_class = this.getFromLocalStorage('body_class');
                 let aside_class = this.getFromLocalStorage('aside_class');
                 let isFullwidth = this.getFromLocalStorage('isFullwidth');
+                let theme = this.getFromLocalStorage('theme');
                 this.bodyIsDark = body_class === 'dark';
                 this.asideIsDark = aside_class === 'dark';
                 this.isFullwidth = (isFullwidth === 'true');
+                this.theme = theme;
             }
         }
     }

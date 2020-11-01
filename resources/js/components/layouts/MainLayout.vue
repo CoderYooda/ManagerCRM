@@ -1,19 +1,18 @@
 <template>
-    <div id="app" class="app">
+    <div class="app">
         <Aside/>
         <div id="content" v-bind:class="{ dark: isDark }" class="app-content box-shadow-0" role="main">
             <Header v-if="header" />
             <div class="content-main d-flex flex" id="content-main">
                 <router-view />
             </div>
-            <Footer v-if="footer" />
         </div>
     </div>
 </template>
 
 <script>
     import Aside from '../template/Aside'
-    import Footer from '../template/Footer';
+    // import Footer from '../template/Footer';
     import Header from '../template/Header';
     export default {
         data: ()=> {
@@ -49,7 +48,7 @@
             }
         },
         components: {
-            Aside, Footer, Header
+            Aside, Header
         }
     }
 </script>

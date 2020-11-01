@@ -17,6 +17,15 @@
                     <div class="nav-border b-primary" data-nav>
                         <ul class="nav bg">
                             <li class="nav-header">
+                                <div class="py-3">
+                                    <a href="#" class="btn btn-sm success theme-accent btn-block">
+                                        <i class="fa fa-fw fa-plus"></i>
+                                        <span class="hidden-folded d-inline">New Project</span>
+                                    </a>
+                                </div>
+                                <span class="text-xs hidden-folded">Main</span>
+                            </li>
+                            <li class="nav-header">
                                 <span class="text-xs hidden-folded">Основное</span>
                             </li>
                             <router-link tag="li" active-class="active" to="/" exact>
@@ -31,6 +40,12 @@
                                     <span class="nav-text">Категории</span>
                                 </a>
                             </router-link>
+                            <router-link tag="li" active-class="active" to="/im" exact>
+                                <a href="#">
+                                    <span class="nav-icon"><i class="fa fa-comments"></i></span>
+                                    <span class="nav-text">Мессенджер</span>
+                                </a>
+                            </router-link>
                             <router-link tag="li" active-class="active" to="/contacts">
                                 <a href="#">
                                     <span class="nav-icon"><i class="fa fa-users"></i></span>
@@ -41,6 +56,12 @@
                                 <a href="#">
                                     <span class="nav-icon"><i class="fa fa-cog"></i></span>
                                     <span class="nav-text">Настройки</span>
+                                </a>
+                            </router-link>
+                            <router-link tag="li" active-class="active" to="/references">
+                                <a href="#">
+                                    <span class="nav-icon"><i class="fa fa-cog"></i></span>
+                                    <span class="nav-text">Справочники</span>
                                 </a>
                             </router-link>
                         </ul>

@@ -1,4 +1,11 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/css/theme/accent.css": "/css/theme/accent.css",
+    "/css/theme/danger.css": "/css/theme/danger.css",
+    "/css/theme/info.css": "/css/theme/info.css",
+    "/css/theme/primary.css": "/css/theme/primary.css",
+    "/css/theme/success.css": "/css/theme/success.css",
+    "/css/theme/warn.css": "/css/theme/warn.css",
+    "/css/theme/warning.css": "/css/theme/warning.css"
 }

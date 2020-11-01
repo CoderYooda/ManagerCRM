@@ -1,0 +1,17 @@
+.simplebar-scrollbar:before {
+    background: #5d6c7d!important;
+}
+
+.slide_up{
+    animation: shift-in 0.15s linear;
+}
+@keyframes shift-in {
+    0%   {
+        opacity: 0;
+        transform:translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform:translateY(0px);
+    ;}
+}

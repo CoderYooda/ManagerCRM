@@ -1,12 +1,11 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
-// Variables
-@import 'variables';
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
 @import "~bootstrap";
 @import "~font-awesome";
-@import "layout";
+@import "./scss/app.scss";
+@import "style";
+@import '~simplebar/dist/simplebar.css';

@@ -15,6 +15,7 @@
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+        <link id="theme_link" href="{{ asset('css/theme/accent.css') }}" rel="stylesheet">
 
 
         {{--    <link rel="stylesheet" href="../libs/font-awesome/css/font-awesome.min.css" type="text/css" />--}}

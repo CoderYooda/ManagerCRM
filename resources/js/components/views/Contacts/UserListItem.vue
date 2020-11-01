@@ -1,11 +1,18 @@
 <template>
-    <div class="list-item " data-id="item-5">
+    <div class="list-item">
             <span class="w-40 avatar circle blue-grey">
             <i class="on b-white avatar-right"></i>
               R
             </span>
         <div class="list-body">
-            <a href="app.user.detail.html#item-5" class="item-title _500">Сенаторов Сергей Андреевич</a>
+            <router-link
+                v-bind:key="entity_id"
+                :to="{name:'contact', params: {entity_id: entity_id}}"
+                tag="a" active-class="active"  exact>
+                {{ lastname }} {{ firstname }} {{ patronymic }}
+            </router-link>
+
+<!--            <a href="#" class="item-title _500">{{ lastname }} {{ firstname }} {{ patronymic }}</a>-->
             <div class="item-except text-sm text-muted h-1x">
                 radionomy@gmail.com
             </div>
@@ -44,6 +51,17 @@
 
 <script>
     export default {
+        data: ()=> {
+            return {
+                props: ['user'],
+            }
+        },
+        computed: {
+            entity_id(){return this.$attrs.user.id},
+            firstname(){return this.$attrs.user.name.first},
+            lastname(){ return this.$attrs.user.name.last},
+            patronymic(){return this.$attrs.user.name.patronymic}
+        }
     }
 </script>
 

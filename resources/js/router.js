@@ -20,6 +20,12 @@ export default new Router({
             component: () => import('./components/views/Categories.vue')
         },
         {
+            path: '/scripture',
+            name: 'scripture',
+            meta: {layout: 'main'},
+            component: () => import('./components/views/Scripture.vue')
+        },
+        {
             path: '/im',
             name: 'Messenger',
             meta: {layout: 'main', header:false, footer:false},

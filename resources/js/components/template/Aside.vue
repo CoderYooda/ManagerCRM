@@ -34,6 +34,12 @@
                                     <span class="nav-text">Главная</span>
                                 </a>
                             </router-link>
+                            <router-link tag="li" active-class="active" to="/scripture" exact>
+                                <a href="#">
+                                    <span class="nav-icon"><i class="fa fa-dashboard"></i></span>
+                                    <span class="nav-text">Скриптор</span>
+                                </a>
+                            </router-link>
                             <router-link tag="li" active-class="active" to="/categories" exact>
                                 <a href="#">
                                     <span class="nav-icon"><i class="fa fa-list"></i></span>

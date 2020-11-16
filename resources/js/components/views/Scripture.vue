@@ -7,7 +7,7 @@
 </template>
 
 <script>
-    import {Canva, Path, TextBlock} from "../../Classes/Canva"
+    import {Canva, Path, TextBlock} from "../../Classes/Canva/Canva"
     export default {
         created(){
 
@@ -24,23 +24,43 @@
                 end: [300,500, 90],
             });
 
+            let path2 = new Path({
+                start: [10,10, 90],
+                end: [50,50, 90],
+            });
+
+            let path3 = new Path({
+                start: [10,10, 90],
+                end: [800,800, 90],
+            });
+
             let block = new TextBlock({
                 position: [300,300],
-                attached:{
-                    path:path,
-                    connection: 'Start'
-                },
+                canva: canva,
+                text: 'Тестовый блок',
+            });
+            let block2 = new TextBlock({
+                position: [600,600],
                 canva: canva,
                 text: 'Тестовый блок',
             });
 
-
             canva.addElem(path);
+            canva.addElem(path2);
+            canva.addElem(path3);
             canva.addElem(block);
+            canva.addElem(block2);
+
+
+
+            path.attach(block, 'start');
+            path3.attach(block, 'start');
+            path.attach(block2, 'end');
+            path2.attach(block, 'start');
 
             document.getElementsByClassName('canva')[0].addEventListener('mousemove', (e) => {
-                path.freshStart([300,300, 90]);
-                path.freshEnd([e.offsetX, e.offsetY, 90]);
+                // path.freshStart([300,300, 90]);
+                //path.freshEnd([e.offsetX, e.offsetY, 90]);
             })
         },
         methods: {
